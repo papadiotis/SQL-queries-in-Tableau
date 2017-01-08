@@ -13,6 +13,9 @@
 ##•	Parameters.DateFilter is a Tableau parameter that gives to the end user the ability to navigate though the time.
 ##  (The name of this parameter inside Tableau is DateFilter, but when you wright the SQL query you have to add the “Parameters.~~~ ”.)
 
+## Care!!!!!!!!!! Tableau is putting spaces in the variable names in order to make them easy for humans to read.
+## ALWAYS SPELL THE VARIABLE NAMES AS THEY ARE BEING SPELLED IN YOUR ROW DATA
+
 ##Query 1: returns the “Active Customers” at the moment the end user has selected.
 SELECT *
 FROM OurDatabase

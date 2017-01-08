@@ -1,0 +1,23 @@
+##Suppose that you have a dataset from a company that sells cars or antiques watches or air conditions.
+##These examples are valid whenever we encounter a product that is being sold, serviced and probably disposed from the same company.
+
+##  Variable vocabulary
+##•	Transaction Date And Time is the exact time of the Transaction. it might be a purchase, a service etc.
+##•	Parameters.DateFilter is a Tableau parameter that gives to the end user the ability to navigate though the time.
+##  (The name of this parameter inside Tableau is DateFilter, but when you wright the SQL query you have to add the “Parameters.~~~ ”.)
+
+## Care!!!!!!!!!! Tableau is putting spaces in the variable names in order to make them easy for humans to read.
+## ALWAYS SPELL THE VARIABLE NAMES AS THEY ARE BEING SPELLED IN YOUR ROW DATA
+
+##Query 2: Selecting Variables from a Database
+
+SELECT
+      OurDatabase.Product,
+      Max(OurDatabase.TransactionDateAndTime) AS LastTransaction,
+      Count(OurDatabase.TransactionDateAndTime) AS TotalNumberOfTransactions
+
+FROM OurDatabase
+
+GROUP BY OurDatabase.Product
+
+HAVING (((Max(OurDatabase.TransactionDateAndTime))<=<Parameters.DateFilter>))

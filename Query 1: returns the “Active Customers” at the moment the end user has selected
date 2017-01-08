@@ -1,7 +1,7 @@
-##Suppose that you have a dataset from a company that sells cars or antiques watches or air conditions.
-##These examples are valid whenever we encounter a product that is being sold, serviced and probably disposed from the same company.
+##  Suppose that you have a dataset from a company that sells cars or antiques watches or air conditions.
+##  These examples are valid whenever we encounter a product that is being sold, serviced and probably disposed from the same company.
 
-## Variable vocabulary
+##  Variable vocabulary
 ##• PurchaseDate is the date that the product is being purchased.
 ##  It is a date that we know with absolute certainty because our company sold this product.
 ##• DisposalDate is the date that the product is being disposed. If we know the DisposalDate, then fine.

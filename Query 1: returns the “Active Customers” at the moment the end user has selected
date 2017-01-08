@@ -40,3 +40,4 @@ WHERE	(
                   ## we want to keep the observations where disposal date IS NOT NULL because all  
                   ## of these observations are valid
                   )
+## END

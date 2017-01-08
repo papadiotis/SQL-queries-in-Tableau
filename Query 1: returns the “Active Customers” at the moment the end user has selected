@@ -1,0 +1,37 @@
+##Suppose that you have a dataset from a company that sells cars or antiques watches or air conditions.
+##These examples are valid whenever we encounter a product that is being sold, serviced and probably disposed from the same company.
+
+##  Variable vocabulary
+##•	PurchaseDate is the date that the product is being purchased.
+##  It is a date that we know with absolute certainty because our company sold this product.
+##•	DisposalDate is the date that the product is being disposed. If we know the DisposalDate, then fine.
+##  But we can never be sure if the client has decided to dispose the product using a service which we are unable to track. 
+##  That fact creates a fundamental problem. As the time progresses clients who disposed our products without our knowledge
+##  are staking up. 
+##•	Parameters.CutOff is a Tableau parameter that is partially solving the problem described above. 
+##  It literally cuts off all the observations which are older than its value. The end user is responsible to determine the CutOff value.
+##•	Parameters.DateFilter is a Tableau parameter that gives to the end user the ability to navigate though the time.
+##  (The name of this parameter inside Tableau is DateFilter, but when you wright the SQL query you have to add the “Parameters.~~~ ”.)
+
+##Query 1: returns the “Active Customers” at the moment the end user has selected.
+SELECT *
+FROM OurDatabase
+WHERE	(
+PurchaseDate <= <Parameters.DateFilter>
+         		AND
+        			(
+DisposalDate >= <Parameters.DateFilter>
+           			 OR
+      			DisposalDate    IS NULL ## we are keeping these values, because if we are looking at the 
+                                    ##present and  yesterday a new purchase occurred the disposal date is  
+                                    ##going to be null and the customer active.
+)
+)
+ 
+AND NOT
+           		(
+           		 [PurchaseDate] < DATEADD(Year, -<Parameters.CutOff>, <Parameters.DateFilter>)
+            		AND
+            		[DisposalDate] IS NULL ## we want to keep the observations where disposal date IS NOT NULL because all  
+                                       ##of these observations are valid
+)
